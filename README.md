@@ -2,7 +2,7 @@
 
 Harps & Rec is a small harp-performance business created for Natalee Tippets. The name is a playful reference to Parks and Recreation, where Natalee previously worked for Calvert County, Maryland.
 
-The project will support a warm, accessible website that helps local organizations, families, and event planners learn about Natalee's harp performances and request a booking.
+The project supports a warm, accessible website that helps local organizations, families, and event planners learn about Natalee's harp performances and request a booking.
 
 **Website:** [harpsandrec.com](https://harpsandrec.com)
 
@@ -53,7 +53,7 @@ The website may include information tailored to:
 
 ## Planned website
 
-The initial website should be simple, fast, accessible, mobile-friendly, and inexpensive to operate.
+The website should remain simple, fast, accessible, mobile-friendly, and inexpensive to operate.
 
 Expected sections may include:
 
@@ -69,7 +69,7 @@ Expected sections may include:
 - Booking or Contact
 - Privacy information
 
-The first version should focus on clear information and a straightforward booking-request experience rather than complex accounts, payments, or administrative systems.
+The early versions should focus on clear information and a straightforward booking-request experience rather than complex accounts, payments, or administrative systems.
 
 ## Intended technical direction
 
@@ -91,6 +91,7 @@ Dependencies and paid services should only be added when they provide a clear be
 Contributors and coding agents should:
 
 - Inspect the repository before making changes.
+- Read and update `project-state.md` for every feature.
 - Keep changes small, understandable, and reversible.
 - Preserve existing conventions unless a change is justified.
 - Never commit secrets, private contact information, or customer data.
@@ -114,6 +115,21 @@ Do not publish:
 
 Missing business facts should remain clearly marked as placeholders until John or Natalee confirms them.
 
+## Project state
+
+The root-level [`project-state.md`](project-state.md) file is the canonical source of truth for:
+
+- Project scope and boundaries
+- Current production features
+- Known limitations
+- Prioritized roadmap
+- Open business facts and decisions
+- Architecture and dependency changes
+- Validation history
+- Feature change log
+
+Every coding agent must update it in the same feature branch or pull request whenever website functionality is added, changed, removed, or deployed.
+
 ## Local development
 
 This project uses pnpm and Node.js 20.9 or later. Install dependencies with:
@@ -132,28 +148,31 @@ pnpm build     # Create a production build
 pnpm start     # Serve a completed production build
 ```
 
-No environment variables are required for this milestone.
+No environment variables are required for the current informational site.
 
 ## Project structure
 
 - `src/app` — App Router pages, layout, metadata, robots, sitemap, icon, and global styles
 - `src/components` — small shared presentational components
-- `docs/PROJECT_STATE.md` — current decisions, limitations, deferred work, and facts awaiting confirmation
+- `project-state.md` — canonical scope, implementation status, roadmap, decisions, and change log
 - `AGENTS.md` — durable implementation and content-safety guidance for coding agents
 
 ## Current status
 
-Milestone 1 establishes an accessible, mobile-friendly website foundation at `/`. It includes a polished homepage and SEO platform basics, but it does not implement booking submission or publish contact information. Online booking requests will be added only after the business booking address and workflow are confirmed.
+Milestone 1 established an accessible, mobile-friendly website foundation at `/`, and the site is deployed at [harpsandrec.com](https://harpsandrec.com). It includes a polished homepage and SEO platform basics, but it does not yet implement booking submission or publish contact information.
 
-The remaining milestones are:
+The next milestones are:
 
 1. Confirm business facts, brand assets, and booking workflow.
-2. Add a simple booking-request workflow.
-3. Connect and deploy the website through Vercel.
-4. Prepare reusable content for Instagram, TikTok, and Facebook.
+2. Add an inquiry and booking-request workflow.
+3. Add audience-specific service pages.
+4. Add approved photography, performance samples, and repertoire.
+5. Prepare reusable content for Instagram, TikTok, and Facebook.
+
+See [`project-state.md`](project-state.md) for the detailed roadmap and latest status.
 
 ## Ownership
 
-Harps & Rec is a private project for John and Natalee Tippets.
+Harps & Rec is owned and developed for John and Natalee Tippets.
 
 No open-source license has been granted unless a license is added explicitly in the future.
