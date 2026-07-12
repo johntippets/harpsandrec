@@ -114,19 +114,43 @@ Do not publish:
 
 Missing business facts should remain clearly marked as placeholders until John or Natalee confirms them.
 
+## Local development
+
+This project uses pnpm and Node.js 20.9 or later. Install dependencies with:
+
+```bash
+pnpm install
+```
+
+Then use the following commands:
+
+```bash
+pnpm dev       # Run the local development server
+pnpm lint      # Check code quality
+pnpm typecheck # Check TypeScript without emitting files
+pnpm build     # Create a production build
+pnpm start     # Serve a completed production build
+```
+
+No environment variables are required for this milestone.
+
+## Project structure
+
+- `src/app` — App Router pages, layout, metadata, robots, sitemap, icon, and global styles
+- `src/components` — small shared presentational components
+- `docs/PROJECT_STATE.md` — current decisions, limitations, deferred work, and facts awaiting confirmation
+- `AGENTS.md` — durable implementation and content-safety guidance for coding agents
+
 ## Current status
 
-Harps & Rec is in its initial project and repository setup phase.
+Milestone 1 establishes an accessible, mobile-friendly website foundation at `/`. It includes a polished homepage and SEO platform basics, but it does not implement booking submission or publish contact information. Online booking requests will be added only after the business booking address and workflow are confirmed.
 
-The first milestones are:
+The remaining milestones are:
 
-1. Establish the repository and project documentation.
-2. Create the website foundation.
-3. Develop the initial brand and visual direction.
-4. Write accurate website copy.
-5. Add a simple booking-request workflow.
-6. Connect and deploy the website through Vercel.
-7. Prepare reusable content for Instagram, TikTok, and Facebook.
+1. Confirm business facts, brand assets, and booking workflow.
+2. Add a simple booking-request workflow.
+3. Connect and deploy the website through Vercel.
+4. Prepare reusable content for Instagram, TikTok, and Facebook.
 
 ## Ownership
 
