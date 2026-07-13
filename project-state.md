@@ -5,7 +5,7 @@
 > **Required maintenance:** Every coding agent that adds, changes, removes, or deploys a website feature must update this file in the same branch and pull request. A feature is not complete until the relevant sections and change log are current.
 
 **Last updated:** 2026-07-12  
-**Current milestone:** Milestone 1 complete; Phase 1 inquiry foundation is merged but live delivery remains blocked, and the first Phase 2 service page is implemented on a review branch
+**Current milestone:** Milestone 1 complete; Phase 1 inquiry foundation is merged but live delivery remains blocked, the retirement-community page is merged, and the private-events page is implemented on a review branch
 **Production site:** https://harpsandrec.com  
 **Repository:** `johntippets/harpsandrec`
 
@@ -17,13 +17,13 @@ The project should help Natalee:
 
 - Practice and continue developing her harp skills.
 - Book paid and community performances.
-- Serve retirement communities, weddings, children’s groups, schools, libraries, churches, wellness programs, private events, and local venues.
+- Serve retirement communities, children’s groups, schools, libraries, churches, wellness programs, private events, and local venues.
 - Share careful educational information about music, recreation, connection, and general well-being.
 - Build a flexible side business with minimal overhead.
 
 ## 2. Business and brand scope
 
-Harps & Rec should feel warm, uplifting, playful, graceful, family-friendly, and authentic. It should be professional enough for weddings and senior-living organizations while remaining welcoming to children, families, schools, libraries, and community groups.
+Harps & Rec should feel warm, uplifting, playful, graceful, family-friendly, and authentic. It should be professional enough for private events and senior-living organizations while remaining welcoming to children, families, schools, libraries, and community groups.
 
 The brand should not feel clinical, sterile, luxury-only, childish, or gimmicky. The visual identity must remain original and must not copy the logo, typography, graphics, or title treatment of the *Parks and Recreation* television program.
 
@@ -32,7 +32,7 @@ The brand should not feel clinical, sterile, luxury-only, childish, or gimmicky.
 Primary audiences:
 
 - Retirement and senior-living communities
-- Weddings and private events
+- Private events
 - Children and families
 - Schools and libraries
 - Churches and community groups
@@ -42,7 +42,7 @@ Primary audiences:
 Planned offerings may include:
 
 - Live harp performances
-- Wedding and private-event music
+- Private-event music
 - Retirement-community performances
 - Harp demonstrations
 - Children’s and community programs
@@ -115,6 +115,8 @@ The inquiry-form foundation merged through PR #3 adds:
 - Node's built-in test runner with TypeScript compilation; no test framework dependency
 - One development/test-only environment switch, `INQUIRY_DELIVERY_MODE`, with safe `local-fake` and `local-failure` simulators that are rejected in production
 
+The service-page system merged through PR #4 uses a typed content model and static Server Component layout. The `codex/private-events` branch extends that model only with configurable section labels and hero decorative words, keeping future audience pages static and dependency-free.
+
 Engineering priorities:
 
 - Mobile-first responsive design
@@ -174,13 +176,20 @@ Merged to `main` through PR #3; deployment status was not verified in this task:
 - Accessible labels, descriptions, required-state communication, linked error summary, focus movement, pending state, and retained safe values
 - Developer documentation and automated coverage for validation, abuse signals, configuration, delivery failure, and success rules
 
-Implemented on `codex/retirement-communities` but not merged or deployed:
+Merged to `main` through PR #4; deployment status was not verified in this task:
 
 - A dedicated `/retirement-communities` audience page with page-specific metadata
 - A typed, reusable static service-page content model and Server Component layout
 - Conditional descriptions of possible program elements, an organizer checklist, claims-boundary content, safe FAQs, and a soft planning CTA
-- A retirement-community link from the homepage and one uncrowded header navigation link
+- A retirement-community link from the homepage and cross-page navigation support
 - The retirement-community route in the sitemap
+
+Implemented on `codex/private-events` but not merged or deployed:
+
+- A dedicated `/private-events` page with page-specific metadata and a sitemap entry
+- Bounded reusable service-page labels and decorative-word configuration for audience-specific copy
+- Private-event planning content, safe FAQs, a soft inquiry CTA, and a homepage card link
+- A general Performance Settings header link so future service pages do not crowd navigation
 
 Review-branch validation completed on 2026-07-12:
 
@@ -201,9 +210,19 @@ Retirement-community review-branch validation completed on 2026-07-12:
 - Local production browser smoke test confirmed the homepage card navigation and page-specific title
 - Responsive checks at approximately 390px, 768px, and 1440px found no horizontal overflow; heading structure, skip navigation, visible keyboard focus, target size, and browser console checks passed
 
+Private-events review-branch validation completed on 2026-07-12:
+
+- `pnpm lint` passed
+- `pnpm typecheck` passed
+- `pnpm test` passed all 13 existing inquiry tests
+- `pnpm build` passed; `/private-events` is statically prerendered
+- Local production smoke test returned HTTP 200 for `/private-events`
+- Browser checks confirmed homepage-card navigation, cross-page Performance Settings navigation, page title, canonical URL, sitemap inclusion, visible keyboard focus, and a clear console
+- Responsive checks at approximately 390px, 768px, and 1440px found no horizontal overflow; reduced-motion behavior was confirmed by the existing shared stylesheet rule
+
 ## 8. Current limitations
 
-The site remains informational while live inquiry delivery is unconfigured. The inquiry foundation is merged to `main` through PR #3, but this task did not verify whether that merge is deployed. The retirement-community page exists only on `codex/retirement-communities` and is not live.
+The site remains informational while live inquiry delivery is unconfigured. The inquiry foundation and retirement-community page are merged to `main` through PRs #3 and #4, but this task did not verify whether either merge is deployed. The private-events page exists only on `codex/private-events` and is not live.
 
 Not yet implemented:
 
@@ -212,15 +231,15 @@ Not yet implemented:
 - An approved business inbox, provider adapter, sender identity, and sender-domain setup
 - Requester confirmation email policy and delivery
 - Distributed rate limiting; the form deliberately avoids a misleading in-memory serverless limiter
-- Weddings/private-events and children/community-program service pages; the reusable pattern and retirement-community page are implemented only on a review branch
+- Private-events and children/community-program service pages; the private-events page is implemented only on a review branch
 - Approved photography
 - Audio or video samples
 - Confirmed repertoire
 - Pricing or quotation guidance
 - Confirmed service area
-- General or site-wide FAQ content; the review branch includes only retirement-community FAQs
+- General or site-wide FAQ content; the retirement-community page includes only audience-specific FAQs
 - Booking and cancellation policies
-- A separate privacy page or professional privacy review; the review branch includes only a concise inline notice
+- A separate privacy page or professional privacy review; the site currently includes only a concise inline notice
 - Analytics or conversion measurement
 - Social-media links or embeds
 - CMS, database, authentication, payments, or scheduling
@@ -274,17 +293,21 @@ Prefer the cheapest reliable implementation. Do not add a database unless retain
 
 ### Phase 2 — Dedicated service pages
 
-Status: **In progress — retirement-community page and reusable pattern implemented on a review branch**
+Status: **In progress — retirement-community page and reusable pattern merged through PR #4; private-events page implemented on a review branch**
 
-Implemented on `codex/retirement-communities`:
+Merged to `main` through PR #4:
 
 - Typed static service-page content model and reusable Server Component layout
 - Retirement Communities page with possible program elements, organizer planning checklist, claims boundary, safe FAQs, metadata, sitemap entry, and soft planning CTA
-- Homepage card and header navigation path to the new page
+- Homepage card and cross-page navigation path to the new page
+
+Implemented on `codex/private-events`:
+
+- Private Events page with configurable planning, expectation, FAQ, and CTA labels in the reusable layout
+- Homepage Private Events card link, metadata, sitemap coverage, and a general Performance Settings header link
 
 Still planned:
 
-- Weddings and Private Events
 - Children, Schools, Libraries, and Community Programs
 
 Each page should explain the intended audience, possible experience, organizer needs, setup considerations, FAQs, and an inquiry call to action without inventing facts.
@@ -365,7 +388,7 @@ Status: **Future**
 Potential additions:
 
 - Seasonal performance content
-- Wedding planning guidance
+- Private-event planning guidance
 - Retirement-community program ideas
 - School and library program information
 - Harp facts and educational posts
@@ -456,4 +479,5 @@ Agents must report checks that were skipped, unavailable, or failed.
 | 2026-07-12 | Milestone 1 website foundation | Deployed | Added the static-first Next.js homepage, accessibility baseline, SEO foundation, provisional branding, and project documentation. | PR #1 / merge `302fc3b` |
 | 2026-07-12 | Canonical project-state tracker | Proposed | Added this scope, roadmap, and mandatory agent-maintenance protocol. | `docs/project-state-tracker` |
 | 2026-07-12 | Inquiry-form foundation | Merged | Added a homepage inquiry form, server validation, low-friction spam controls, provider-neutral delivery boundary, accessible states, tests, and documentation; live email delivery remains intentionally unconfigured. | PR #3 / merge `671234d` |
-| 2026-07-12 | Retirement-community service page | Proposed | Added a reusable typed service-page pattern and a dedicated retirement-community page with careful planning content, FAQs, metadata, sitemap coverage, and homepage navigation. | `codex/retirement-communities` |
+| 2026-07-12 | Retirement-community service page | Merged | Added a reusable typed service-page pattern and a dedicated retirement-community page with careful planning content, FAQs, metadata, sitemap coverage, and homepage navigation. | PR #4 / merge `b3fb356` |
+| 2026-07-12 | Private-events service page | Proposed | Added a private-events page with configurable reusable-layout labels, careful planning content, FAQs, metadata, sitemap coverage, and homepage navigation. | `codex/private-events` |

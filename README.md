@@ -2,7 +2,7 @@
 
 Harps & Rec is a small harp-performance business created for Natalee Tippets. The name is a playful reference to Parks and Recreation, where Natalee previously worked for Calvert County, Maryland.
 
-The project supports a warm, accessible website that helps local organizations, families, and event planners learn about Natalee's harp performances and request a booking.
+The project supports a warm, accessible website that helps local organizations, families, and event planners learn about Natalee's harp performances and prepare a performance inquiry.
 
 **Website:** [harpsandrec.com](https://harpsandrec.com)
 
@@ -11,7 +11,7 @@ The project supports a warm, accessible website that helps local organizations, 
 Harps & Rec is intended to help Natalee:
 
 - Practice and continue developing her harp skills.
-- Perform for retirement communities, weddings, children's groups, schools, libraries, churches, and community events.
+- Perform for retirement communities, private events, children's groups, schools, libraries, churches, and community events.
 - Share educational information about harp music, recreation, and well-being.
 - Build a flexible local side business with minimal overhead.
 - Make it easy for potential clients to ask questions or request a performance.
@@ -22,7 +22,7 @@ Harps & Rec should feel:
 
 - Warm and uplifting
 - Playful without being gimmicky
-- Professional enough for weddings and senior communities
+- Professional enough for private events and senior communities
 - Welcoming to children, families, and community groups
 - Honest, personal, and approachable
 
@@ -44,7 +44,7 @@ Website and marketing content should:
 The website may include information tailored to:
 
 - Retirement and senior-living communities
-- Weddings and private events
+- Private events
 - Children and families
 - Schools and libraries
 - Churches and community groups
@@ -61,7 +61,7 @@ Expected sections may include:
 - About Natalee
 - Services
 - Retirement Communities
-- Weddings
+- Private Events
 - Children and Community Programs
 - Recreation, Music, and Well-Being
 - Repertoire or performance samples
@@ -162,7 +162,7 @@ Production inquiry delivery is intentionally unconfigured until a business inbox
 
 ## Current status
 
-Milestone 1 established an accessible, mobile-friendly website foundation at `/`, and the site is deployed at [harpsandrec.com](https://harpsandrec.com). It includes a polished homepage and SEO platform basics, but it does not yet implement booking submission or publish contact information.
+Milestone 1 established an accessible, mobile-friendly website foundation at `/`, and the site is deployed at [harpsandrec.com](https://harpsandrec.com). It includes a polished homepage, an inquiry-form foundation with intentionally unconfigured live delivery, and SEO platform basics; it does not publish business contact information.
 
 The next milestones are:
 
