@@ -46,10 +46,19 @@ export default function Home() {
       </a>
       <SiteHeader />
       <main id="main-content" tabIndex={-1}>
+        <aside className="location-strip" aria-labelledby="location-strip-heading">
+          <div className="shell location-strip__inner">
+            <div>
+              <strong id="location-strip-heading">Serving the Richmond, Virginia area</strong>
+              <p>Based in Moseley, VA 23120 <span aria-hidden="true">•</span> Generally traveling within an approximate 50-mile radius.</p>
+            </div>
+            <Link href="/service-area">Check your event location <span aria-hidden="true">→</span></Link>
+          </div>
+        </aside>
         <section className="hero" aria-labelledby="hero-heading">
           <div className="shell hero__grid">
             <div className="hero__content">
-              <p className="eyebrow">Live harp music for local gatherings</p>
+              <p className="eyebrow">Live harp music for Richmond-area gatherings</p>
               <h1 id="hero-heading">Harp music for meaningful moments.</h1>
               <p className="hero__lede">
                 Harps &amp; Rec is a new performance project by Natalee Tippets, created to bring warm live harp music to retirement communities, private events, children’s programs, and community gatherings.

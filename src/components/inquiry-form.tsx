@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState, useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 
@@ -225,7 +226,9 @@ export function InquiryForm() {
               type="text"
               {...errorProps("location", "location-help")}
             />
-            <p className="field-help" id="location-help">City, county, or venue area only. Please do not enter a home address.</p>
+            <p className="field-help" id="location-help">
+              City, county, or venue area only. Please do not enter a home address. You can <Link href="/service-area">check an exact event location separately</Link> without creating an inquiry.
+            </p>
             {fieldErrors.location && <p className="field-error" id="location-error">{fieldErrors.location}</p>}
           </div>
 

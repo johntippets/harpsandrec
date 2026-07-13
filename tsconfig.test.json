@@ -11,6 +11,7 @@
   },
   "include": [
     "src/lib/inquiry/**/*.ts",
+    "src/lib/service-area/**/*.ts",
     "tests/**/*.ts"
   ]
 }
