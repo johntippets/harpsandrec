@@ -12,13 +12,15 @@ const performanceOptions = [
     description:
       "Live harp music is being planned to create a welcoming shared experience for residents, guests, and staff—one that leaves room for listening, conversation, and simple enjoyment.",
     href: "/retirement-communities",
+    linkLabel: "Explore retirement community programs",
   },
   {
     number: "02",
-    title: "Weddings & private events",
+    title: "Private events",
     description:
-      "Harp music for ceremonies, gatherings, and meaningful occasions, thoughtfully developed around the feeling of the day and the people coming together.",
-    href: undefined,
+      "Live harp music is being explored for celebrations, family gatherings, meaningful occasions, receptions, community gatherings, and other private events.",
+    href: "/private-events",
+    linkLabel: "Explore private-event music",
   },
   {
     number: "03",
@@ -26,6 +28,7 @@ const performanceOptions = [
     description:
       "Engaging harp demonstrations, musical exploration, and age-appropriate educational programming are in development for schools, libraries, families, children’s groups, and community organizations.",
     href: undefined,
+    linkLabel: undefined,
   },
 ];
 
@@ -49,7 +52,7 @@ export default function Home() {
               <p className="eyebrow">Live harp music for local gatherings</p>
               <h1 id="hero-heading">Harp music for meaningful moments.</h1>
               <p className="hero__lede">
-                Harps &amp; Rec is a new performance project by Natalee Tippets, created to bring warm live harp music to retirement communities, weddings, children’s programs, and community events.
+                Harps &amp; Rec is a new performance project by Natalee Tippets, created to bring warm live harp music to retirement communities, private events, children’s programs, and community gatherings.
               </p>
               <div className="hero__actions">
                 <a className="button button--primary" href="#request-performance">
@@ -90,7 +93,7 @@ export default function Home() {
                   <p>{option.description}</p>
                   {option.href && (
                     <Link className="performance-card__link" href={option.href}>
-                      Explore retirement community programs <span aria-hidden="true">→</span>
+                      {option.linkLabel} <span aria-hidden="true">→</span>
                     </Link>
                   )}
                   <span className="card-line" aria-hidden="true" />

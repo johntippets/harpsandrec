@@ -34,9 +34,9 @@ export function ServicePage({ content }: ServicePageProps) {
             <div className="service-hero__art" aria-hidden="true">
               <div className="service-hero__shape" />
               <HarpMotif className="service-hero__harp" />
-              <span>music</span>
-              <span>conversation</span>
-              <span>curiosity</span>
+              {content.heroDecorativeWords.map((word) => (
+                <span key={word}>{word}</span>
+              ))}
             </div>
           </div>
         </section>
@@ -45,8 +45,8 @@ export function ServicePage({ content }: ServicePageProps) {
           <div className="shell">
             <div className="section-intro section-intro--split">
               <div>
-                <p className="eyebrow">Possible program elements</p>
-                <h2 id="possibilities-heading">What a program might look like.</h2>
+                <p className="eyebrow">{content.possibilitiesEyebrow}</p>
+                <h2 id="possibilities-heading">{content.possibilitiesTitle}</h2>
               </div>
               <p>{content.possibilitiesIntro}</p>
             </div>
@@ -65,8 +65,8 @@ export function ServicePage({ content }: ServicePageProps) {
         <section className="section service-planning" aria-labelledby="planning-heading">
           <div className="shell service-planning__grid">
             <div>
-              <p className="eyebrow">Organizer planning checklist</p>
-              <h2 id="planning-heading">Helpful details for a first conversation.</h2>
+              <p className="eyebrow">{content.checklistEyebrow}</p>
+              <h2 id="planning-heading">{content.checklistTitle}</h2>
               <p className="service-planning__intro">{content.checklistIntro}</p>
             </div>
             <ul className="service-checklist">
@@ -85,7 +85,7 @@ export function ServicePage({ content }: ServicePageProps) {
 
         <section className="section service-boundary" aria-labelledby="boundary-heading">
           <div className="shell service-boundary__inner">
-            <p className="eyebrow">Clear expectations</p>
+            <p className="eyebrow">{content.boundaryEyebrow}</p>
             <h2 id="boundary-heading">{content.boundaryTitle}</h2>
             {content.boundaryParagraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -96,8 +96,8 @@ export function ServicePage({ content }: ServicePageProps) {
         <section className="section service-faq" aria-labelledby="faq-heading">
           <div className="shell service-faq__grid">
             <div>
-              <p className="eyebrow">Common questions</p>
-              <h2 id="faq-heading">A few useful answers.</h2>
+              <p className="eyebrow">{content.faqEyebrow}</p>
+              <h2 id="faq-heading">{content.faqTitle}</h2>
             </div>
             <dl className="faq-list">
               {content.faqs.map((faq) => (
@@ -113,7 +113,7 @@ export function ServicePage({ content }: ServicePageProps) {
         <section className="service-cta" aria-labelledby="service-cta-heading">
           <div className="shell service-cta__inner">
             <div>
-              <p className="eyebrow">A thoughtful first step</p>
+              <p className="eyebrow">{content.ctaEyebrow}</p>
               <h2 id="service-cta-heading">{content.ctaTitle}</h2>
               <p>{content.ctaDescription}</p>
             </div>

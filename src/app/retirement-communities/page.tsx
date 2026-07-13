@@ -28,6 +28,9 @@ const retirementCommunityContent: ServicePageContent = {
     "Harps & Rec is developing live performance and educational programming for retirement and senior-living communities. The goal is a warm shared experience that can welcome residents alongside activity directors, community-life teams, families, guests, and staff.",
     "Every community and gathering is different. A first conversation can focus on the people, room, purpose, and practical details before any performance plan is confirmed.",
   ],
+  heroDecorativeWords: ["music", "conversation", "curiosity"],
+  possibilitiesEyebrow: "Possible program elements",
+  possibilitiesTitle: "What a program might look like.",
   possibilitiesIntro:
     "A program could combine several simple elements depending on the setting, audience, and plan developed with the organizer. These are possibilities for discussion, not fixed packages or promises.",
   possibilities: [
@@ -52,6 +55,8 @@ const retirementCommunityContent: ServicePageContent = {
         "An organizer may wish to explore a program with approachable learning elements shaped for the gathering without making clinical or therapeutic claims.",
     },
   ],
+  checklistEyebrow: "Organizer planning checklist",
+  checklistTitle: "Helpful details for a first conversation.",
   checklistIntro:
     "You do not need a finished plan before reaching out. General information in these areas can help begin a useful discussion without sharing private resident information.",
   checklist: [
@@ -86,11 +91,14 @@ const retirementCommunityContent: ServicePageContent = {
         "Share broad preferences or requests if helpful. Requests are welcome for planning but do not confirm repertoire.",
     },
   ],
+  boundaryEyebrow: "Clear expectations",
   boundaryTitle: "Performance and education—not clinical therapy.",
   boundaryParagraphs: [
     "Harps & Rec provides live performances and educational programming. It is not healthcare, mental-health treatment, clinical recreational therapy, licensed music therapy, or a substitute for professional care.",
     "Programs may make space for enjoyment, curiosity, conversation, and a shared musical experience, but they do not promise medical, cognitive, behavioral, rehabilitation, or mental-health outcomes.",
   ],
+  faqEyebrow: "Common questions",
+  faqTitle: "A few useful answers.",
   faqs: [
     {
       question: "Does an inquiry confirm availability or create a booking?",
@@ -113,6 +121,7 @@ const retirementCommunityContent: ServicePageContent = {
         "Yes. Organizers may share general loading, entrance, room, and setup considerations. Those details help start a conversation but do not guarantee a particular accommodation.",
     },
   ],
+  ctaEyebrow: "A thoughtful first step",
   ctaTitle: "Gather the details you already know.",
   ctaDescription:
     "Review the simple planning process before preparing an inquiry. Live email delivery is not yet enabled, so the site will not claim that an unconfigured request was received.",

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const navigation = [
-  { href: "/retirement-communities", label: "Retirement Communities" },
+  { href: "/#performances", label: "Performance Settings" },
   { href: "/#about-natalee", label: "About Natalee" },
   { href: "/#music-wellbeing", label: "Music & Well-Being" },
   { href: "/#request-performance", label: "Request a Performance" },

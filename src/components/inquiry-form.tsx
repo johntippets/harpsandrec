@@ -190,7 +190,7 @@ export function InquiryForm() {
             />
             <datalist id="event-type-options">
               <option value="Retirement or senior-living community" />
-              <option value="Wedding or private event" />
+              <option value="Private event" />
               <option value="School or library program" />
               <option value="Church or community gathering" />
               <option value="Family or children’s program" />
