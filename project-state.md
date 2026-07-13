@@ -5,7 +5,7 @@
 > **Required maintenance:** Every coding agent that adds, changes, removes, or deploys a website feature must update this file in the same branch and pull request. A feature is not complete until the relevant sections and change log are current.
 
 **Last updated:** 2026-07-12  
-**Current milestone:** Milestone 1 complete; inquiry workflow is the next priority  
+**Current milestone:** Milestone 1 complete; Phase 1 inquiry foundation is implemented on a review branch, while live delivery remains blocked on business decisions
 **Production site:** https://harpsandrec.com  
 **Repository:** `johntippets/harpsandrec`
 
@@ -105,6 +105,16 @@ Current architecture:
 - React Server Components by default
 - Minimal client-side JavaScript
 
+The inquiry-form foundation on `codex/inquiry-form-foundation` adds:
+
+- A homepage Server Action for server-authoritative inquiry processing
+- Dependency-free validation and submission modules under `src/lib/inquiry`
+- A provider-neutral delivery-adapter interface
+- A development/test-only fake adapter that sends, stores, and logs no inquiry data
+- One focused Client Component for pending state, error presentation, and focus movement
+- Node's built-in test runner with TypeScript compilation; no test framework dependency
+- One development/test-only environment switch, `INQUIRY_DELIVERY_MODE`, with safe `local-fake` and `local-failure` simulators that are rejected in production
+
 Engineering priorities:
 
 - Mobile-first responsive design
@@ -153,16 +163,38 @@ Current validation baseline:
 - Local production homepage smoke test returned HTTP 200
 - Browser review completed at approximately 390px, 768px, and 1440px without horizontal overflow or console errors
 
+Implemented on `codex/inquiry-form-foundation` but not merged or deployed:
+
+- A responsive homepage “Request a performance” form and updated calls to action
+- Required and optional request fields with plain-language privacy and booking disclaimers
+- Server-side normalization, field validation, past-date checks, repeated/unexpected-field rejection, 20,000-byte aggregate input limit, and per-field limits
+- A honeypot and minimum-completion-time signal with generic suspected-spam handling
+- Honest validation, configuration, success, and unexpected-error states
+- A delivery boundary that cannot return success after an unconfigured, failed, or thrown handoff
+- Accessible labels, descriptions, required-state communication, linked error summary, focus movement, pending state, and retained safe values
+- Developer documentation and automated coverage for validation, abuse signals, configuration, delivery failure, and success rules
+
+Review-branch validation completed on 2026-07-12:
+
+- `pnpm lint` passed
+- `pnpm typecheck` passed
+- `pnpm test` passed all 13 tests
+- `pnpm build` passed; the homepage remains statically prerendered
+- Local production homepage smoke test returned HTTP 200
+- Browser checks covered validation, unconfigured delivery, simulated delivery failure, and safe local fake success
+- Responsive checks at approximately 390px, 768px, and 1440px found no horizontal overflow; keyboard focus remained visible and console checks were clear
+
 ## 8. Current limitations
 
-The site is currently informational only.
+The deployed site is currently informational only. The inquiry foundation exists only on `codex/inquiry-form-foundation` and is not live.
 
 Not yet implemented:
 
 - Approved business contact details
-- Working inquiry or booking form
-- Email delivery
-- Spam protection
+- Live inquiry email delivery
+- An approved business inbox, provider adapter, sender identity, and sender-domain setup
+- Requester confirmation email policy and delivery
+- Distributed rate limiting; the form deliberately avoids a misleading in-memory serverless limiter
 - Dedicated service pages
 - Approved photography
 - Audio or video samples
@@ -171,7 +203,7 @@ Not yet implemented:
 - Confirmed service area
 - FAQ content
 - Booking and cancellation policies
-- Privacy notice for submitted inquiries
+- A separate privacy page or professional privacy review; the review branch includes only a concise inline notice
 - Analytics or conversion measurement
 - Social-media links or embeds
 - CMS, database, authentication, payments, or scheduling
@@ -201,20 +233,25 @@ Confirm:
 
 ### Phase 1 — Generate inquiries
 
-Status: **Next priority**
+Status: **In progress — form foundation implemented on a review branch; live delivery is blocked on an approved inbox and provider**
 
-Planned scope:
+Implemented on the review branch:
+
+- Visible “Request a performance” calls to action
+- Accessible booking-request form integrated into the homepage
+- Server-side validation and normalization
+- Honest pending, validation, configuration, success, and unexpected-error states
+- Low-friction honeypot, completion-time, request-size, and input-length spam controls
+- Short inline inquiry privacy notice
+- Provider-neutral email delivery boundary and safe local/test fake
+
+Still required before live delivery:
 
 - Approved business email
-- Visible “Request a performance” calls to action
-- Clear inquiry instructions
-- Accessible booking-request form
-- Server-side validation
-- Honest success and error states
-- Low-friction spam protection
 - Email notification to the business inbox
-- Requester confirmation email when practical
-- Short privacy notice
+- Approved provider and sender-domain configuration
+- Requester confirmation decision; no confirmation is implemented
+- Decision on a separate privacy page and professional review
 
 Prefer the cheapest reliable implementation. Do not add a database unless retaining submissions is necessary.
 
@@ -351,6 +388,10 @@ The following still require confirmation from John and Natalee:
 - Required permissions and facility policies for such photographs
 - Desired inquiry-response time
 - Preferred email provider and booking inbox workflow
+- Approved sender identity and any sender-domain DNS setup
+- Whether requester confirmation emails should be sent after successful business-inbox delivery
+- Whether the inline inquiry notice is sufficient for launch or a separate privacy page and professional review are needed
+- Mailbox retention, deletion, access, and incident-handling practices for inquiry data
 
 ## 12. Agent update protocol
 
@@ -392,3 +433,4 @@ Agents must report checks that were skipped, unavailable, or failed.
 | --- | --- | --- | --- | --- |
 | 2026-07-12 | Milestone 1 website foundation | Deployed | Added the static-first Next.js homepage, accessibility baseline, SEO foundation, provisional branding, and project documentation. | PR #1 / merge `302fc3b` |
 | 2026-07-12 | Canonical project-state tracker | Proposed | Added this scope, roadmap, and mandatory agent-maintenance protocol. | `docs/project-state-tracker` |
+| 2026-07-12 | Inquiry-form foundation | Proposed | Added a homepage inquiry form, server validation, low-friction spam controls, provider-neutral delivery boundary, accessible states, tests, and documentation; live email delivery remains intentionally unconfigured. | `codex/inquiry-form-foundation` |

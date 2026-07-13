@@ -1,4 +1,5 @@
 import { HarpMotif } from "@/components/harp-motif";
+import { InquiryForm } from "@/components/inquiry-form";
 import { SiteHeader } from "@/components/site-header";
 
 const performanceOptions = [
@@ -47,11 +48,11 @@ export default function Home() {
                 Harps &amp; Rec is a new performance project by Natalee Tippets, created to bring warm live harp music to retirement communities, weddings, children’s programs, and community events.
               </p>
               <div className="hero__actions">
-                <a className="button button--primary" href="#performances">
-                  Explore performances
+                <a className="button button--primary" href="#request-performance">
+                  Request a performance
                 </a>
-                <a className="button button--text" href="#about-natalee">
-                  Meet Natalee <span aria-hidden="true">→</span>
+                <a className="button button--text" href="#performances">
+                  Explore performances <span aria-hidden="true">→</span>
                 </a>
               </div>
             </div>
@@ -130,10 +131,10 @@ export default function Home() {
         <section className="section process" aria-labelledby="process-heading">
           <div className="shell">
             <div className="section-intro section-intro--centered">
-              <p className="eyebrow">A simple future process</p>
+              <p className="eyebrow">A simple inquiry process</p>
               <h2 id="process-heading">Planning for a thoughtful fit.</h2>
               <p>
-                A booking workflow is still ahead. When it is ready, the conversation will begin with the details that help shape a comfortable, useful performance plan.
+                Start by sharing the details that would help shape a comfortable, useful performance plan. An inquiry begins a conversation; it does not confirm availability or create a booking.
               </p>
             </div>
             <ol className="process-list">
@@ -145,20 +146,24 @@ export default function Home() {
               ))}
             </ol>
             <p className="process-note">
-              Useful request information will eventually include event type, preferred date, general location, audience, approximate duration, accessibility considerations, and special requests.
+              You can share an event type, preferred date, general location, audience, approximate duration, practical setup considerations, and music requests below.
             </p>
           </div>
         </section>
 
-        <section className="booking-status" id="request-information" aria-labelledby="booking-heading">
-          <div className="shell booking-status__inner">
-            <div>
-              <p className="eyebrow">Request information</p>
-              <h2 id="booking-heading">Booking details are coming soon.</h2>
+        <section className="section inquiry-section" id="request-performance" aria-labelledby="inquiry-heading">
+          <div className="shell inquiry-section__layout">
+            <div className="inquiry-section__intro">
+              <p className="eyebrow">Request a performance</p>
+              <h2 id="inquiry-heading">Tell us about your gathering.</h2>
+              <p>
+                Share the information available now. The form is ready for review, but live email delivery remains intentionally unavailable until a business inbox and provider are approved.
+              </p>
+              <p>
+                You will see an honest result after submitting. A success message appears only when the configured delivery adapter reports a successful handoff.
+              </p>
             </div>
-            <p>
-              Online booking requests are coming in a future milestone. Contact details will be added after the business booking address and workflow are confirmed.
-            </p>
+            <InquiryForm />
           </div>
         </section>
       </main>
@@ -168,7 +173,7 @@ export default function Home() {
             <p className="wordmark">Harps <span>&amp;</span> Rec</p>
             <p>harpsandrec.com</p>
           </div>
-          <p>© {year} Harps &amp; Rec. Booking details coming soon.</p>
+          <p>© {year} Harps &amp; Rec. Performance inquiries do not confirm availability.</p>
         </div>
       </footer>
     </>

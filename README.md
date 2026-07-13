@@ -144,16 +144,19 @@ Then use the following commands:
 pnpm dev       # Run the local development server
 pnpm lint      # Check code quality
 pnpm typecheck # Check TypeScript without emitting files
+pnpm test      # Run inquiry validation and submission tests
 pnpm build     # Create a production build
 pnpm start     # Serve a completed production build
 ```
 
-No environment variables are required for the current informational site.
+Production inquiry delivery is intentionally unconfigured until a business inbox and provider are approved. For local form testing only, copy `.env.example` to `.env.local`; the documented fake transport sends and stores nothing.
 
 ## Project structure
 
 - `src/app` — App Router pages, layout, metadata, robots, sitemap, icon, and global styles
 - `src/components` — small shared presentational components
+- `src/lib/inquiry` — server-side inquiry validation, submission, and delivery boundary
+- `docs/inquiry-form.md` — inquiry architecture, local setup, privacy, and verification guidance
 - `project-state.md` — canonical scope, implementation status, roadmap, decisions, and change log
 - `AGENTS.md` — durable implementation and content-safety guidance for coding agents
 

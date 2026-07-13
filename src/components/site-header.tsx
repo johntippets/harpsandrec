@@ -2,7 +2,7 @@ const navigation = [
   { href: "#performances", label: "Performances" },
   { href: "#about-natalee", label: "About Natalee" },
   { href: "#music-wellbeing", label: "Music & Well-Being" },
-  { href: "#request-information", label: "Request Information" },
+  { href: "#request-performance", label: "Request a Performance" },
 ];
 
 export function SiteHeader() {
