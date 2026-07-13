@@ -29,6 +29,9 @@ export function ServicePage({ content }: ServicePageProps) {
                 {content.introduction.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
+                <Link className="service-area-inline-link" href="/service-area">
+                  Check an event location <span aria-hidden="true">→</span>
+                </Link>
               </div>
             </div>
             <div className="service-hero__art" aria-hidden="true">

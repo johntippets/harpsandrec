@@ -4,8 +4,8 @@
 >
 > **Required maintenance:** Every coding agent that adds, changes, removes, or deploys a website feature must update this file in the same branch and pull request. A feature is not complete until the relevant sections and change log are current.
 
-**Last updated:** 2026-07-12  
-**Current milestone:** Milestone 1 complete; Phase 1 inquiry foundation is merged but live delivery remains blocked, the retirement-community page is merged, and the private-events page is implemented on a review branch
+**Last updated:** 2026-07-13
+**Current milestone:** Milestone 1 complete; Phase 1 inquiry foundation is merged but live delivery remains blocked, the retirement-community and private-events pages are merged, and the Richmond-area service-page checker is implemented on a review branch
 **Production site:** https://harpsandrec.com  
 **Repository:** `johntippets/harpsandrec`
 
@@ -115,7 +115,9 @@ The inquiry-form foundation merged through PR #3 adds:
 - Node's built-in test runner with TypeScript compilation; no test framework dependency
 - One development/test-only environment switch, `INQUIRY_DELIVERY_MODE`, with safe `local-fake` and `local-failure` simulators that are rejected in production
 
-The service-page system merged through PR #4 uses a typed content model and static Server Component layout. The `codex/private-events` branch extends that model only with configurable section labels and hero decorative words, keeping future audience pages static and dependency-free.
+The service-page system merged through PR #4 uses a typed content model and static Server Component layout. PR #5 extended that model only with configurable section labels and hero decorative words, keeping future audience pages static and dependency-free.
+
+The service-area feature implemented on `codex/service-area-checker` adds a static `/service-area` page and a focused Client Component for an optional address check. A Server Action validates the address and sends it directly to the official U.S. Census Geocoding Services API with `cache: "no-store"`; Harps & Rec does not log or store it. Distance is calculated server-side with a dependency-free Haversine function from the public 2025 Census Gazetteer representative point for ZCTA 23120 (latitude `37.42208`, longitude `-77.781371`), not a residence. The integration uses no API key, environment variable, new dependency, paid service, or recurring-cost addition.
 
 Engineering priorities:
 
@@ -184,12 +186,22 @@ Merged to `main` through PR #4; deployment status was not verified in this task:
 - A retirement-community link from the homepage and cross-page navigation support
 - The retirement-community route in the sitemap
 
-Implemented on `codex/private-events` but not merged or deployed:
+Merged to `main` through PR #5; deployment status was not verified in this task:
 
 - A dedicated `/private-events` page with page-specific metadata and a sitemap entry
 - Bounded reusable service-page labels and decorative-word configuration for audience-specific copy
 - Private-event planning content, safe FAQs, a soft inquiry CTA, and a homepage card link
 - A general Performance Settings header link so future service pages do not crowd navigation
+
+Implemented on `codex/service-area-checker` but not merged or deployed:
+
+- A dedicated static `/service-area` page with page-specific metadata and sitemap coverage
+- Confirmed Moseley, Virginia 23120 and Richmond-area service language with an approximate 50-mile radius
+- A server-only U.S. Census address-geocoding adapter, strict input validation, timeout and malformed-response handling, and no-store requests
+- Dependency-free straight-line distance calculation from a public, non-residential ZCTA 23120 reference point
+- Accessible within-radius, outside-radius, near-boundary, no-match, ambiguous-match, timeout, upstream-error, and validation states
+- Homepage, audience-page, inquiry-form, and footer links to the service-area page
+- Automated tests for distance boundaries, geocoder parsing and transport failures, validation and abuse signals, and no-false-success workflow rules
 
 Review-branch validation completed on 2026-07-12:
 
@@ -220,9 +232,18 @@ Private-events review-branch validation completed on 2026-07-12:
 - Browser checks confirmed homepage-card navigation, cross-page Performance Settings navigation, page title, canonical URL, sitemap inclusion, visible keyboard focus, and a clear console
 - Responsive checks at approximately 390px, 768px, and 1440px found no horizontal overflow; reduced-motion behavior was confirmed by the existing shared stylesheet rule
 
+Service-area review-branch validation completed on 2026-07-13:
+
+- `pnpm lint` passed
+- `pnpm typecheck` passed
+- `pnpm test` passed all 33 tests
+- `pnpm build` passed; `/service-area` and the audience pages remain statically prerendered
+- Local production smoke testing confirmed a nearby public government-office address as within the radius, an outside public civic address as outside it, and a synthetic no-match address as safely unresolved
+- Browser checks confirmed the page title, canonical URL, homepage and audience-page links, result-panel focus movement, and responsive layouts at 390px, 768px, and 1440px without horizontal overflow
+
 ## 8. Current limitations
 
-The site remains informational while live inquiry delivery is unconfigured. The inquiry foundation and retirement-community page are merged to `main` through PRs #3 and #4, but this task did not verify whether either merge is deployed. The private-events page exists only on `codex/private-events` and is not live.
+The site remains informational while live inquiry delivery is unconfigured. The inquiry foundation, retirement-community page, and private-events page are merged to `main` through PRs #3, #4, and #5, but this task did not verify whether those merges are deployed. The service-area page and checker exist only on `codex/service-area-checker` and are not live.
 
 Not yet implemented:
 
@@ -231,12 +252,12 @@ Not yet implemented:
 - An approved business inbox, provider adapter, sender identity, and sender-domain setup
 - Requester confirmation email policy and delivery
 - Distributed rate limiting; the form deliberately avoids a misleading in-memory serverless limiter
-- Private-events and children/community-program service pages; the private-events page is implemented only on a review branch
+- Children/community-program service pages
 - Approved photography
 - Audio or video samples
 - Confirmed repertoire
 - Pricing or quotation guidance
-- Confirmed service area
+- Address estimates remain dependent on the external Census service being available and compatible; the checker fails safely when it cannot produce a trustworthy result
 - General or site-wide FAQ content; the retirement-community page includes only audience-specific FAQs
 - Booking and cancellation policies
 - A separate privacy page or professional privacy review; the site currently includes only a concise inline notice
@@ -250,12 +271,12 @@ The current wordmark and harp motif are provisional and are not approved final b
 
 ### Phase 0 — Confirm business facts
 
-Status: **Not started**
+Status: **In progress — the service-area fact is confirmed; the remaining business facts are pending**
 
 Confirm:
 
 - Approved business contact email
-- Service area and travel expectations
+- Any travel expectations beyond the confirmed approximate 50-mile Richmond-area radius
 - Short and long Natalee biography
 - Initial services Natalee is ready to offer
 - Performance-duration options
@@ -293,7 +314,7 @@ Prefer the cheapest reliable implementation. Do not add a database unless retain
 
 ### Phase 2 — Dedicated service pages
 
-Status: **In progress — retirement-community page and reusable pattern merged through PR #4; private-events page implemented on a review branch**
+Status: **In progress — retirement-community and private-events pages are merged through PRs #4 and #5**
 
 Merged to `main` through PR #4:
 
@@ -301,7 +322,7 @@ Merged to `main` through PR #4:
 - Retirement Communities page with possible program elements, organizer planning checklist, claims boundary, safe FAQs, metadata, sitemap entry, and soft planning CTA
 - Homepage card and cross-page navigation path to the new page
 
-Implemented on `codex/private-events`:
+Merged to `main` through PR #5:
 
 - Private Events page with configurable planning, expectation, FAQ, and CTA labels in the reusable layout
 - Homepage Private Events card link, metadata, sitemap coverage, and a general Performance Settings header link
@@ -340,12 +361,17 @@ Potential additions:
 
 ### Phase 5 — Local discovery and SEO
 
-Status: **Planned after business facts are confirmed**
+Status: **In progress on a review branch; deployment remains pending**
+
+Implemented on `codex/service-area-checker`:
+
+- Natural Richmond-area and Moseley, Virginia service language
+- A static service-area page with route-specific metadata and sitemap coverage
+- A privacy-conscious, server-only Census address checker using a public ZCTA reference point and approximate 50-mile radius
 
 Potential additions:
 
 - Audience-specific metadata
-- Natural service-area language
 - Social-sharing image
 - Verified structured data
 - Search-engine sitemap submission
@@ -418,7 +444,7 @@ Do not add without a validated need and explicit approval:
 The following still require confirmation from John and Natalee:
 
 - Approved business contact email
-- Confirmed service area
+- Any travel expectations or exceptions beyond the confirmed approximate 50-mile radius
 - Confirmed social-media profile URLs
 - Approved photographs
 - Actual repertoire
@@ -480,4 +506,5 @@ Agents must report checks that were skipped, unavailable, or failed.
 | 2026-07-12 | Canonical project-state tracker | Proposed | Added this scope, roadmap, and mandatory agent-maintenance protocol. | `docs/project-state-tracker` |
 | 2026-07-12 | Inquiry-form foundation | Merged | Added a homepage inquiry form, server validation, low-friction spam controls, provider-neutral delivery boundary, accessible states, tests, and documentation; live email delivery remains intentionally unconfigured. | PR #3 / merge `671234d` |
 | 2026-07-12 | Retirement-community service page | Merged | Added a reusable typed service-page pattern and a dedicated retirement-community page with careful planning content, FAQs, metadata, sitemap coverage, and homepage navigation. | PR #4 / merge `b3fb356` |
-| 2026-07-12 | Private-events service page | Proposed | Added a private-events page with configurable reusable-layout labels, careful planning content, FAQs, metadata, sitemap coverage, and homepage navigation. | `codex/private-events` |
+| 2026-07-12 | Private-events service page | Merged | Added a private-events page with configurable reusable-layout labels, careful planning content, FAQs, metadata, sitemap coverage, and homepage navigation. | PR #5 / merge `35bb6d8438e027e07f13d07071f9f1c4f4799ee4` |
+| 2026-07-13 | Richmond-area service page and checker | Proposed | Added confirmed Richmond-area service language, a static service-area page, a privacy-conscious server-only Census address checker, dependency-free radius calculations, accessible result states, and focused automated coverage. | `codex/service-area-checker` |
