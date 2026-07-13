@@ -5,7 +5,7 @@
 > **Required maintenance:** Every coding agent that adds, changes, removes, or deploys a website feature must update this file in the same branch and pull request. A feature is not complete until the relevant sections and change log are current.
 
 **Last updated:** 2026-07-12  
-**Current milestone:** Milestone 1 complete; Phase 1 inquiry foundation is implemented on a review branch, while live delivery remains blocked on business decisions
+**Current milestone:** Milestone 1 complete; Phase 1 inquiry foundation is merged but live delivery remains blocked, and the first Phase 2 service page is implemented on a review branch
 **Production site:** https://harpsandrec.com  
 **Repository:** `johntippets/harpsandrec`
 
@@ -105,7 +105,7 @@ Current architecture:
 - React Server Components by default
 - Minimal client-side JavaScript
 
-The inquiry-form foundation on `codex/inquiry-form-foundation` adds:
+The inquiry-form foundation merged through PR #3 adds:
 
 - A homepage Server Action for server-authoritative inquiry processing
 - Dependency-free validation and submission modules under `src/lib/inquiry`
@@ -163,7 +163,7 @@ Current validation baseline:
 - Local production homepage smoke test returned HTTP 200
 - Browser review completed at approximately 390px, 768px, and 1440px without horizontal overflow or console errors
 
-Implemented on `codex/inquiry-form-foundation` but not merged or deployed:
+Merged to `main` through PR #3; deployment status was not verified in this task:
 
 - A responsive homepage “Request a performance” form and updated calls to action
 - Required and optional request fields with plain-language privacy and booking disclaimers
@@ -173,6 +173,14 @@ Implemented on `codex/inquiry-form-foundation` but not merged or deployed:
 - A delivery boundary that cannot return success after an unconfigured, failed, or thrown handoff
 - Accessible labels, descriptions, required-state communication, linked error summary, focus movement, pending state, and retained safe values
 - Developer documentation and automated coverage for validation, abuse signals, configuration, delivery failure, and success rules
+
+Implemented on `codex/retirement-communities` but not merged or deployed:
+
+- A dedicated `/retirement-communities` audience page with page-specific metadata
+- A typed, reusable static service-page content model and Server Component layout
+- Conditional descriptions of possible program elements, an organizer checklist, claims-boundary content, safe FAQs, and a soft planning CTA
+- A retirement-community link from the homepage and one uncrowded header navigation link
+- The retirement-community route in the sitemap
 
 Review-branch validation completed on 2026-07-12:
 
@@ -184,9 +192,18 @@ Review-branch validation completed on 2026-07-12:
 - Browser checks covered validation, unconfigured delivery, simulated delivery failure, and safe local fake success
 - Responsive checks at approximately 390px, 768px, and 1440px found no horizontal overflow; keyboard focus remained visible and console checks were clear
 
+Retirement-community review-branch validation completed on 2026-07-12:
+
+- `pnpm lint` passed after replacing internal plain-anchor navigation with `next/link`
+- `pnpm typecheck` passed
+- `pnpm test` passed all 13 existing inquiry tests
+- `pnpm build` passed; `/retirement-communities` is statically prerendered
+- Local production browser smoke test confirmed the homepage card navigation and page-specific title
+- Responsive checks at approximately 390px, 768px, and 1440px found no horizontal overflow; heading structure, skip navigation, visible keyboard focus, target size, and browser console checks passed
+
 ## 8. Current limitations
 
-The deployed site is currently informational only. The inquiry foundation exists only on `codex/inquiry-form-foundation` and is not live.
+The site remains informational while live inquiry delivery is unconfigured. The inquiry foundation is merged to `main` through PR #3, but this task did not verify whether that merge is deployed. The retirement-community page exists only on `codex/retirement-communities` and is not live.
 
 Not yet implemented:
 
@@ -195,13 +212,13 @@ Not yet implemented:
 - An approved business inbox, provider adapter, sender identity, and sender-domain setup
 - Requester confirmation email policy and delivery
 - Distributed rate limiting; the form deliberately avoids a misleading in-memory serverless limiter
-- Dedicated service pages
+- Weddings/private-events and children/community-program service pages; the reusable pattern and retirement-community page are implemented only on a review branch
 - Approved photography
 - Audio or video samples
 - Confirmed repertoire
 - Pricing or quotation guidance
 - Confirmed service area
-- FAQ content
+- General or site-wide FAQ content; the review branch includes only retirement-community FAQs
 - Booking and cancellation policies
 - A separate privacy page or professional privacy review; the review branch includes only a concise inline notice
 - Analytics or conversion measurement
@@ -233,9 +250,9 @@ Confirm:
 
 ### Phase 1 — Generate inquiries
 
-Status: **In progress — form foundation implemented on a review branch; live delivery is blocked on an approved inbox and provider**
+Status: **In progress — form foundation merged through PR #3; live delivery is blocked on an approved inbox and provider**
 
-Implemented on the review branch:
+Merged to `main` through PR #3:
 
 - Visible “Request a performance” calls to action
 - Accessible booking-request form integrated into the homepage
@@ -257,11 +274,16 @@ Prefer the cheapest reliable implementation. Do not add a database unless retain
 
 ### Phase 2 — Dedicated service pages
 
-Status: **Planned**
+Status: **In progress — retirement-community page and reusable pattern implemented on a review branch**
 
-Create pages for:
+Implemented on `codex/retirement-communities`:
 
-- Retirement Communities
+- Typed static service-page content model and reusable Server Component layout
+- Retirement Communities page with possible program elements, organizer planning checklist, claims boundary, safe FAQs, metadata, sitemap entry, and soft planning CTA
+- Homepage card and header navigation path to the new page
+
+Still planned:
+
 - Weddings and Private Events
 - Children, Schools, Libraries, and Community Programs
 
@@ -433,4 +455,5 @@ Agents must report checks that were skipped, unavailable, or failed.
 | --- | --- | --- | --- | --- |
 | 2026-07-12 | Milestone 1 website foundation | Deployed | Added the static-first Next.js homepage, accessibility baseline, SEO foundation, provisional branding, and project documentation. | PR #1 / merge `302fc3b` |
 | 2026-07-12 | Canonical project-state tracker | Proposed | Added this scope, roadmap, and mandatory agent-maintenance protocol. | `docs/project-state-tracker` |
-| 2026-07-12 | Inquiry-form foundation | Proposed | Added a homepage inquiry form, server validation, low-friction spam controls, provider-neutral delivery boundary, accessible states, tests, and documentation; live email delivery remains intentionally unconfigured. | `codex/inquiry-form-foundation` |
+| 2026-07-12 | Inquiry-form foundation | Merged | Added a homepage inquiry form, server validation, low-friction spam controls, provider-neutral delivery boundary, accessible states, tests, and documentation; live email delivery remains intentionally unconfigured. | PR #3 / merge `671234d` |
+| 2026-07-12 | Retirement-community service page | Proposed | Added a reusable typed service-page pattern and a dedicated retirement-community page with careful planning content, FAQs, metadata, sitemap coverage, and homepage navigation. | `codex/retirement-communities` |
