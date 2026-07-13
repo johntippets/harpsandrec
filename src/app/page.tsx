@@ -1,5 +1,8 @@
+import Link from "next/link";
+
 import { HarpMotif } from "@/components/harp-motif";
 import { InquiryForm } from "@/components/inquiry-form";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 const performanceOptions = [
@@ -8,18 +11,21 @@ const performanceOptions = [
     title: "Retirement communities",
     description:
       "Live harp music is being planned to create a welcoming shared experience for residents, guests, and staff—one that leaves room for listening, conversation, and simple enjoyment.",
+    href: "/retirement-communities",
   },
   {
     number: "02",
     title: "Weddings & private events",
     description:
       "Harp music for ceremonies, gatherings, and meaningful occasions, thoughtfully developed around the feeling of the day and the people coming together.",
+    href: undefined,
   },
   {
     number: "03",
     title: "Children & community programs",
     description:
       "Engaging harp demonstrations, musical exploration, and age-appropriate educational programming are in development for schools, libraries, families, children’s groups, and community organizations.",
+    href: undefined,
   },
 ];
 
@@ -30,8 +36,6 @@ const bookingSteps = [
 ];
 
 export default function Home() {
-  const year = new Date().getFullYear();
-
   return (
     <>
       <a className="skip-link" href="#main-content">
@@ -84,6 +88,11 @@ export default function Home() {
                   <p className="card-number">{option.number}</p>
                   <h3>{option.title}</h3>
                   <p>{option.description}</p>
+                  {option.href && (
+                    <Link className="performance-card__link" href={option.href}>
+                      Explore retirement community programs <span aria-hidden="true">→</span>
+                    </Link>
+                  )}
                   <span className="card-line" aria-hidden="true" />
                 </article>
               ))}
@@ -128,7 +137,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section process" aria-labelledby="process-heading">
+        <section className="section process" id="planning-process" aria-labelledby="process-heading">
           <div className="shell">
             <div className="section-intro section-intro--centered">
               <p className="eyebrow">A simple inquiry process</p>
@@ -167,15 +176,7 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <footer className="site-footer">
-        <div className="shell site-footer__inner">
-          <div>
-            <p className="wordmark">Harps <span>&amp;</span> Rec</p>
-            <p>harpsandrec.com</p>
-          </div>
-          <p>© {year} Harps &amp; Rec. Performance inquiries do not confirm availability.</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

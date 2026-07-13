@@ -1,22 +1,24 @@
+import Link from "next/link";
+
 const navigation = [
-  { href: "#performances", label: "Performances" },
-  { href: "#about-natalee", label: "About Natalee" },
-  { href: "#music-wellbeing", label: "Music & Well-Being" },
-  { href: "#request-performance", label: "Request a Performance" },
+  { href: "/retirement-communities", label: "Retirement Communities" },
+  { href: "/#about-natalee", label: "About Natalee" },
+  { href: "/#music-wellbeing", label: "Music & Well-Being" },
+  { href: "/#request-performance", label: "Request a Performance" },
 ];
 
 export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="site-header__inner shell">
-        <a className="wordmark" href="#main-content" aria-label="Harps and Rec home">
+        <Link className="wordmark" href="/" aria-label="Harps and Rec home">
           Harps <span>&amp;</span> Rec
-        </a>
+        </Link>
         <nav aria-label="Primary navigation">
           <ul className="site-nav">
             {navigation.map((item) => (
               <li key={item.href}>
-                <a href={item.href}>{item.label}</a>
+                <Link href={item.href}>{item.label}</Link>
               </li>
             ))}
           </ul>
